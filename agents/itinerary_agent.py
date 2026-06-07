@@ -1,25 +1,18 @@
-from agents.travel_agent import generate_travel_guide
-from agents.food_agent import recommend_food
-from agents.weather_agent import weather_advice
+from config import model
 
-def generate_complete_report(destination):
+def generate_itinerary(destination, days):
 
-    travel = generate_travel_guide(destination)
-    food = recommend_food(destination)
-    weather = weather_advice(destination)
+    prompt = f"""
+    Create a detailed {days}-day travel itinerary for {destination}.
 
-    report = f"""
-# Travel Guide
+    Include:
+    - Morning activities
+    - Afternoon activities
+    - Evening activities
+    - Food recommendations
+    - Travel tips
+    """
 
-{travel}
+    response = model.generate_content(prompt)
 
-# Food Recommendations
-
-{food}
-
-# Weather Information
-
-{weather}
-"""
-
-    return report
+    return response.text

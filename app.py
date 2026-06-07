@@ -14,7 +14,7 @@ days = st.number_input(
 if st.button("Generate Complete Guide"):
     if destination:
         try:
-            result = generate_complete_report(destination)
+            result = generate_complete_report(destination,days)
             st.write(result)
 
         except Exception as e:
