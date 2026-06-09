@@ -1,7 +1,9 @@
 import streamlit as st
-from agents.orchestrator_agent import generate_complete_report
+import requests
 
 st.title("🌍 AI Travel Companion")
+
+API_URL = "https://ai-travel-companion-496731521484.asia-south1.run.app"
 
 destination = st.text_input("Enter a destination")
 
@@ -11,28 +13,24 @@ days = st.number_input(
     max_value=14,
     value=3
 )
+
 if st.button("Generate Complete Guide"):
     if destination:
         try:
-            result = generate_complete_report(destination,days)
+            response = requests.post(
+                f"{API_URL}/generate",
+                json={
+                    "destination": destination,
+                    "days": days
+                }
+            )
+
+            result = response.json()
+
             st.write(result)
 
         except Exception as e:
-            st.warning("⚠️ Gemini API quota reached.")
-
-            st.info("""
-The AI service is temporarily unavailable because the free Gemini API limit has been reached.
-
-Please try again later.
-
-Meanwhile, here are some travel tips:
-• Check local weather before travelling
-• Carry essential documents
-• Research local food specialties
-• Plan transportation in advance
-• Keep emergency contacts handy
-""")
-
+            st.warning("⚠️ AI service unavailable.")
             st.expander("Technical Details").write(str(e))
 
     else:
