@@ -1,4 +1,4 @@
-from config import model
+from backend.config import model
 
 def generate_budget_plan(destination, budget):
 
