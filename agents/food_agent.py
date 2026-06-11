@@ -1,17 +1,6 @@
 from backend.config import model
 
-def recommend_food(destination):
-
-    prompt = f"""
-    Recommend famous local foods in {destination}.
-
-    Include:
-    - Traditional dishes
-    - Popular street foods
-    - Famous desserts
-    - Must-try restaurants
-    """
-
+def generate_food_recommendations(destination):
+    prompt = f"Give a complete local food and restaurant guide for {destination}."
     response = model.generate_content(prompt)
-
     return response.text

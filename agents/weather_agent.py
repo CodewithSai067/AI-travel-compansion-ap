@@ -1,6 +1,6 @@
 from backend.config import model
 
-def weather_advice(destination):
+def generate_weather_info(destination):
 
     prompt = f"""
     Provide weather information for {destination}.
