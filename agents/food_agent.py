@@ -1,4 +1,4 @@
-from backend.config import model
+from config import model
 
 def recommend_food(destination):
 
