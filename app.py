@@ -17,9 +17,9 @@ days = st.number_input(
 if st.button("Generate Complete Guide"):
     if destination:
         try:
-            response = requests.post(
-                f"{API_URL}/generate",
-                json={
+            response = requests.get(
+                f"{API_URL}/travel-report",
+                params={
                     "destination": destination,
                     "days": days
                 }
@@ -27,6 +27,7 @@ if st.button("Generate Complete Guide"):
 
             result = response.json()
 
+            st.success("Travel Guide Generated")
             st.write(result)
 
         except Exception as e:
