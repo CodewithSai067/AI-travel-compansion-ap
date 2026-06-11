@@ -1,4 +1,4 @@
-from ..config import model
+from config import model
 
 def generate_itinerary(destination, days):
 
