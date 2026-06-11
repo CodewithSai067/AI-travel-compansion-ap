@@ -1,4 +1,5 @@
-from config import model
+import config
+model = config.model
 
 def recommend_food(destination):
 
