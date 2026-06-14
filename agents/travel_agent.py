@@ -1,4 +1,5 @@
-from backend.config import model
+import google.generativeai as genai
+from backend.config import model  # Make sure this points to your config file
 
 def generate_travel_guide(destination):
 
